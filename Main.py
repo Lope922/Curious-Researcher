@@ -8,7 +8,15 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
-suggest = species.name_suggest(q="white tiger", limit=50)
+suggest = species.name_suggest(q="sparrow", rank='GENUS', limit=5)
+
+# backbone = species.name_backbone(name='white tiger', kingdom='animalia')
+
+# print(backbone)
+
+print(suggest)
+
+# suggest = species.name_backbone(name='white tiger', kingdom='animals', limit=500)
 
 suggest_data = suggest['data']
 
@@ -17,12 +25,18 @@ print(suggest['data'])
 data = suggest_data
 
 for o in data:
+    print(o)
     key = o['key']
     name = o['canonicalName']
+    # vernacular = o['vernacularNames']
+    # for v in vernacular:
+    #     print(v)
     # print(key)
     # print(name)
     occurs = occurrences.count(taxonKey=key)
     print('Name: ' + name + '\nCount: ' + str(occurs))
+
+occurs = occurrences.search()
 
 # print(suggest['data'])
 
