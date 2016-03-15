@@ -12,14 +12,6 @@ name_input = input("Enter a common animal name: ")
 
 suggest = species.name_suggest(q=name_input, rank='SPECIES')
 
-# backbone = species.name_backbone(name='white tiger', kingdom='animalia')
-
-# print(backbone)
-
-# print(suggest)
-
-# suggest = species.name_backbone(name='white tiger', kingdom='animals', limit=500)
-
 suggest_data = suggest['data']['results']
 
 print(suggest_data)
@@ -29,17 +21,13 @@ data = suggest_data
 for o in data:
     # print(o)
     key = o['key']
+    occurs = occurrences.count(taxonKey=key)
     names = o['vernacularNames']
-    for name in names:
-        print(name['vernacularName'])
-    print(key)
-    # vernacular = o['vernacularNames']
-    # for v in vernacular:
-    #     print(v)
-    # print(key)
-    # print(name)
-    # occurs = occurrences.count(taxonKey=key)
-    # print('Name: ' + '\nCount: ' + str(occurs))
+    if occurs > 0:
+        for name in names:
+            print(name['vernacularName'])
+        print(key)
+        print('Count: ' + str(occurs) + '\n')
 
 # occurs = occurrences.search()
 
