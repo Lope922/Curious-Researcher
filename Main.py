@@ -8,7 +8,9 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
-suggest = species.name_suggest(q="sparrow", rank='SPECIES')
+name_input = input("Enter a common animal name: ")
+
+suggest = species.name_suggest(q=name_input, rank='SPECIES')
 
 # backbone = species.name_backbone(name='white tiger', kingdom='animalia')
 
@@ -29,7 +31,7 @@ for o in data:
     key = o['key']
     names = o['vernacularNames']
     for name in names:
-        print(name)
+        print(name['vernacularName'])
     print(key)
     # vernacular = o['vernacularNames']
     # for v in vernacular:
