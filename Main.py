@@ -44,6 +44,7 @@ for o in data:
             # sections = page.sections
             # for section in sections:
             #     print(section)
+            # github push error, delete this
             print(page.summary)
             # print(desc.content)
         except:
