@@ -8,11 +8,14 @@ from bs4 import BeautifulSoup
 import requests
 import json
 
+
 name_input = input("Enter a common animal name: ")
 
-suggest = species.name_suggest(q=name_input, rank='SPECIES')
+suggest = species.name_suggest(q=name_input, rank='SPECIES', limit=250)
 
 suggest_data = suggest['data']['results']
+
+
 
 print(suggest_data)
 
