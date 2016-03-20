@@ -7,7 +7,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 	 
 
 # configuration of the database
-DATABASE = 'Speicies.db'
+DATABASE = 'Species.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
