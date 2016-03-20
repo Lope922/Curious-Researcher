@@ -24,23 +24,31 @@ for o in data:
     # print(o)
     key = o['key']
     occurs = occurrences.count(taxonKey=key)
-    canon_name = o['canonicalName']
+    try :
+        canon_name = o['canonicalName']
+    except:
+        continue
     names = o['vernacularNames']
     descriptions = o['descriptions']
     if occurs > 0:
         print('Scientific name: ' + canon_name + '\n')
         print('Vernacular names: ')
         for name in names:
+            # Used if all languages want to be included
             # print(name['vernacularName'])
             language = (name['language'])
+            # Can be changed if user wants to select a specific language
             if language == 'eng':
                 print(name['vernacularName'])
         # print(wikipedia.search(canon_name))
         try:
+            # pulls the wiki page based on canonical name in url (usually works)
             desc = wikipedia.page(canon_name, auto_suggest=True)
+            # alternative wiki page including all sections
             page = wikipedia.WikipediaPage(canon_name)
+            # pulls the summary page for the species
             summary = wikipedia.summary(canon_name, sentences=5)
-            # print('Short summary: ' + summary)
+            # experimental for section pages
             # sections = page.sections
             # for section in sections:
             #     print(section)
