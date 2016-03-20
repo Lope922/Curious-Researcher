@@ -7,6 +7,7 @@ from pygbif import occurrences
 from bs4 import BeautifulSoup
 import requests
 import json
+import wikipedia
 
 
 name_input = input("Enter a common animal name: ")
@@ -34,7 +35,21 @@ for o in data:
             language = (name['language'])
             if language == 'eng':
                 print(name['vernacularName'])
-        print(str(key))
+        # print(wikipedia.search(canon_name))
+        try:
+            desc = wikipedia.page(canon_name, auto_suggest=True)
+            page = wikipedia.WikipediaPage(canon_name)
+            summary = wikipedia.summary(canon_name, sentences=5)
+            # print('Short summary: ' + summary)
+            # sections = page.sections
+            # for section in sections:
+            #     print(section)
+            print(page.summary)
+            # print(desc.content)
+        except:
+            print("No description found")
+
+        print('GBIF Key: ' + str(key))
         print('GBIF Species Page: ' + 'http://www.gbif.org/species/' + str(key))
         print('Count: ' + str(occurs) + '\n')
 
