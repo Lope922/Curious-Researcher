@@ -1,0 +1,33 @@
+(Assuming Windows OS)
+To setup flask for this project open the command prompt. 
+
+Navigate to the directory that the project is located in. 
+
+Once in that directory run the ProjectFalskr.py by typing:
+python ProjectFlaskr.py
+
+If an error message displays that show that no species.db could be found then that databse needs to be created. 
+NOTE: both the database schema file and .db file should be installed in the same level as the ProjectFalskr.py file. 
+
+in the command line if python is installed in your environment path variable then run python by typing python
+once in python import the command to run by typing 
+from ProjectFalskr import init_db
+
+then run the command : init_db() to create the database 
+
+
+exit python or open another commnad prompt navigate to project path and run python ProjectFalskr.py 
+
+once the server starts try and go to the web address suggested within the shell. 
+
+Project folder layout:
+
+~/Project4Temp 
+	\ ProjectFlask
+		\
+		 Static (folder with CSS styles in it) 
+		 Templates(folder with HTML files in it) 
+		 ProjectFlask.py
+		 species_request.py
+		 SpeciesSchema.sql
+		 Species.db 
