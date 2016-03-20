@@ -28,7 +28,7 @@ def connect_db():
 # method that initializes the database by reading from said file
 def init_db():
     with closing(connect_db()) as db:
-        with app.open_resource('Speiciesschema.sql', mode='r') as f:
+        with app.open_resource('Speciesschema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
 
