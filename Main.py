@@ -15,8 +15,6 @@ suggest = species.name_suggest(q=name_input, rank='SPECIES', limit=250)
 
 suggest_data = suggest['data']['results']
 
-
-
 print(suggest_data)
 
 data = suggest_data
@@ -25,11 +23,19 @@ for o in data:
     # print(o)
     key = o['key']
     occurs = occurrences.count(taxonKey=key)
+    canon_name = o['canonicalName']
     names = o['vernacularNames']
+    descriptions = o['descriptions']
     if occurs > 0:
+        print('Scientific name: ' + canon_name + '\n')
+        print('Vernacular names: ')
         for name in names:
-            print(name['vernacularName'])
-        print(key)
+            # print(name['vernacularName'])
+            language = (name['language'])
+            if language == 'eng':
+                print(name['vernacularName'])
+        print(str(key))
+        print('GBIF Species Page: ' + 'http://www.gbif.org/species/' + str(key))
         print('Count: ' + str(occurs) + '\n')
 
 # occurs = occurrences.search()
