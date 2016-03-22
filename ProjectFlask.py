@@ -6,8 +6,6 @@ from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 
-	 
-
 # configuration of the database
 DATABASE = './Species.db'
 DEBUG = True
@@ -15,18 +13,17 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 
-
 # NOTE a cleaner solution would be to create a separate .ini or .py file and load that or import the values from there. -- TODO
 
-# create the instance of the app. 
+# create the instance of the app.
 app = Flask(__name__)
-#configureations of the flask environment 
+#configureations of the flask environment
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-	
-# method used to connect to the database in the location provided above in the DATABASE value  	
+
+# method used to connect to the database in the location provided above in the DATABASE value
 def connect_db():
-    return sqlite3.connect(app.config['DATABASE'])		
+    return sqlite3.connect(app.config['DATABASE'])
 
 # method that initializes the database by reading from said file
 def init_db():
@@ -34,8 +31,6 @@ def init_db():
         with app.open_resource('Speciesschema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
-
-		
 
 # before any request can be made server needs to establish a connection with the database
 @app.before_request
@@ -54,18 +49,18 @@ def teardown_request(exception):
 # Displays the mainpage on default web page load
 @app.route('/')
 def show_entries():
-	# here is where python needs to listen for the value to come in and once it recieves that value acknowlege it and make the GBIF request 
+	# here is where python needs to listen for the value to come in and once it recieves that value acknowlege it and make the GBIF request
 	return render_template('Project4HomePageTemplate.html')
 
-	
-# This method processes input and sends it onto the database. NOTE: THERE IS NO ERROR CHECKING PRIOR TO THIS. 
-# experimenting with post and get request types 
+
+# This method processes input and sends it onto the database. NOTE: THERE IS NO ERROR CHECKING PRIOR TO THIS.
+# experimenting with post and get request types
 @app.route("/results", methods=['POST'])
-def search_animal_name():	
-	
-	# results of text box input from button click. 
+def search_animal_name():
+
+	# results of text box input from button click.
 	animalName = request.form['animalLookup']
-	
+
 	# GBIF Portion
 	newAnimal = Animal
 	newAnimal.name = str(animalName)
