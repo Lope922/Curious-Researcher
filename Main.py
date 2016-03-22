@@ -1,10 +1,5 @@
-import pygbif as bgif
-from pygbif import registry
 from pygbif import species
 from pygbif import occurrences
-from bs4 import BeautifulSoup
-import requests
-import json
 import wikipedia
 
 
