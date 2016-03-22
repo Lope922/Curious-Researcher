@@ -24,6 +24,13 @@ def search_species(entry):
     for o in data:
         key = o['key']
         occurs = occurrences.count(taxonKey=key)
+        occur_search = occurrences.search(taxonKey=key)
+        # print('occur search: ' + str(occur_search))
+
+
+        # for country in countries:
+        #     print(country)
+        # print(occur_search)
         if occurs > 0:
             try:
                 canon_name = o['canonicalName']
@@ -43,7 +50,7 @@ def search_species(entry):
                     language = (name['language'])
                     # Can be changed if user wants to select a specific language
                     if language == 'eng':
-                        if name_input in vern_name_match and match_found == False:
+                        if name_input in vern_name_match and match_found is False:
                             match_found = True
                             print(vern_name_match)
                 if match_found == False:
@@ -76,7 +83,27 @@ def search_species(entry):
 
                 print('GBIF Key: ' + str(key))
                 print('GBIF Species Page: ' + 'http://www.gbif.org/species/' + str(key))
-                print('Count: ' + str(occurs) + '\n')
+                print('Count: ' + str(occurs))
+                occur_data = occur_search['results']
+                countries = {}
+                for occur in occur_data:
+                    try:
+                        country = occur['country']
+                        if country not in countries:
+                            countries[country] = 1
+                        else:
+                            countries[country] += 1
+                        # print(occur['country'])
+                    except:
+                        continue
+                # for country in countries:
+                #     print(country)
+                sorted_countries = sorted(countries.items(), key=lambda x: x[1], reverse=True)
+                if countries != {}:
+                    print('Top 3 Countries Observed: ')
+                    for country in sorted_countries[:3]:
+                        print(str(country))
+                print('\n')
             except:
                 continue
 

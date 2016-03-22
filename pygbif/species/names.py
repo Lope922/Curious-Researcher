@@ -95,7 +95,6 @@ def name_suggest(q=None, datasetKey=None, rank=None, fields=None, start=None, li
       species.name_suggest(q='Puma', limit=2)
   '''
   url = gbif_baseurl + 'species/search'
-  print(url)
   args = {'q':q, 'rank':rank, 'offset':start, 'limit':limit}
   tt = gbif_GET(url, args, **kwargs)
   return {'data': tt}
