@@ -5,10 +5,11 @@ import wikipedia
 
 def search_species(entry):
     # To be used when calling the method
-    # name_input = entry
+
+    name_input = entry
 
     # User input for testing purposes
-    name_input = input("Enter a common species name: ")
+    # name_input = input("Enter a common species name: ")
 
     results = {}
 
@@ -132,11 +133,12 @@ def search_species(entry):
                 continue
 
     print(results)
+    return results
 
     # To be used when calling the method
     # return results
 
-search_species('something')
+# search_species('otter')
 
 # occurs = occurrences.search()
 
